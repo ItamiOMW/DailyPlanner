@@ -115,7 +115,7 @@
         android:background="@color/blue_gray"
         android:hint="@string/enter_task_desc"
         android:padding="10dp"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         app:layout_constraintBottom_toTopOf="@id/button_save"
         app:layout_constraintTop_toBottomOf="@id/ll_time" />
 

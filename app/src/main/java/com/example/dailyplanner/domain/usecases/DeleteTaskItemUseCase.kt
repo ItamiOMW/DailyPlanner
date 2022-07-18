@@ -5,6 +5,6 @@ import com.example.dailyplanner.domain.repository.TaskRepository
 
 class DeleteTaskItemUseCase(private val repository: TaskRepository) {
 
-    operator fun invoke(taskItem: TaskItem) = repository.deleteTask(taskItem)
+    suspend operator fun invoke(taskItem: TaskItem) = repository.deleteTask(taskItem)
 
 }
