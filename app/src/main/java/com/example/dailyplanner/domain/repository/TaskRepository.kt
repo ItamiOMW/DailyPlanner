@@ -1,6 +1,8 @@
 package com.example.dailyplanner.domain.repository
 
+import androidx.lifecycle.LiveData
 import com.example.dailyplanner.domain.model.TaskItem
+import java.time.LocalDate
 
 interface TaskRepository {
 
@@ -10,5 +12,5 @@ interface TaskRepository {
 
     suspend fun changeTask(taskItem: TaskItem)
 
-    fun getTaskItem(taskItemId: Int): TaskItem
+    fun getTaskItemList(date: LocalDate): LiveData<List<TaskItem>>
 }

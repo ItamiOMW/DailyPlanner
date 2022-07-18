@@ -5,6 +5,6 @@ import com.example.dailyplanner.domain.repository.TaskRepository
 
 class ChangeTaskItemUseCase(private val repository: TaskRepository) {
 
-    operator fun invoke(taskItem: TaskItem) = repository.changeTask(taskItem)
+    suspend operator fun invoke(taskItem: TaskItem) = repository.changeTask(taskItem)
 
 }
