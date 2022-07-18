@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">DailyPlanner</string>
+    <string name="arrow_left"><![CDATA[<-]]></string>
+    <string name="arrow_right"><![CDATA[->]]></string>
+    <string name="monday_tv">MON</string>
+    <string name="tuesday_tv">TUE</string>
+    <string name="wednesday_tv">WED</string>
+    <string name="thursday_tv">THU</string>
+    <string name="friday_tv">FRI</string>
+    <string name="saturday_tv">SAT</string>
+    <string name="sunday_tv">SUN</string>
+    <string name="add_new_task_button_desc">ДОБАВЛЕНИЕ НОВОЙ ЗАДАЧИ</string>
+    <string name="button_is_task_ready_or_not">BUTTON IS TASK READY OR NOT</string>
+    <string name="task_name">Название</string>
+    <string name="enter_task_name">Введите название</string>
+    <string name="enter_task_desc">Введите описание:</string>
+    <string name="button_text_save">SAVE</string>
+    <string name="set_time">SET TIME</string>
+    <string name="from">НАЧАЛО:</string>
+    <string name="to">КОНЕЦ:</string>
+    <string name="hint_enter_time">Установите время</string>
 </resources>
