@@ -12,5 +12,7 @@ interface TaskRepository {
 
     suspend fun changeTask(taskItem: TaskItem)
 
+    suspend fun getTaskItem(taskItem: TaskItem): TaskItem
+
     fun getTaskItemList(date: LocalDate): LiveData<List<TaskItem>>
 }
