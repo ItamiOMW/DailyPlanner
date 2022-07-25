@@ -3,17 +3,13 @@ package com.example.dailyplanner.presentation.main_screen
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.ListAdapter
 import com.example.dailyplanner.R
 import java.time.LocalDate
 
-class CalendarAdapter() : ListAdapter<LocalDate?, CalendarViewHolder>(DiffUtiIItemCallbackCalendar()) {
-
-    private lateinit var viewModel: MainViewModel
-
-    fun setViewModel(viewModel: MainViewModel) {
-        this.viewModel = viewModel
-    }
+class CalendarAdapter(private val viewModel: MainViewModel) :
+    ListAdapter<LocalDate?, CalendarViewHolder>(DiffUtiIItemCallbackCalendar()) {
 
     var onNumberItemClickListener: ((position: Int, date: LocalDate) -> Unit)? = null
 

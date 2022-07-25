@@ -2,8 +2,9 @@ package com.example.dailyplanner.data.mapper
 
 import com.example.dailyplanner.data.database.TaskItemDbModel
 import com.example.dailyplanner.domain.model.TaskItem
+import javax.inject.Inject
 
-class TaskItemMapper {
+class TaskItemMapper @Inject constructor() {
 
     fun mapDbModelToEntity(model: TaskItemDbModel) = TaskItem(
         id = model.id,

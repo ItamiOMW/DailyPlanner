@@ -1,5 +1,6 @@
 package com.example.dailyplanner.presentation.main_screen
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,8 +15,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dailyplanner.R
 import com.example.dailyplanner.databinding.FragmentMainBinding
+import com.example.dailyplanner.di.DailyMainApp
 import com.example.dailyplanner.domain.model.TaskItem
+import com.example.dailyplanner.presentation.edit_screen.EditViewModel
 import com.example.dailyplanner.presentation.edit_screen.FragmentEdit
+import com.example.dailyplanner.presentation.viewmodel_factory.ViewModelFactory
+import javax.inject.Inject
 
 class FragmentMain : Fragment() {
 
@@ -37,12 +42,23 @@ class FragmentMain : Fragment() {
         return binding.root
     }
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[MainViewModel::class.java]
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var viewModel: MainViewModel
+
+    private val component by lazy {
+        (requireActivity().application as DailyMainApp).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        super.onAttach(context)
     }
 
     private val calendarAdapter by lazy {
-        CalendarAdapter()
+        CalendarAdapter(viewModel)
     }
 
     private val mainAdapter by lazy {
@@ -99,7 +115,6 @@ class FragmentMain : Fragment() {
     }
 
     private fun setUpRvCalendar() {
-        calendarAdapter.setViewModel(viewModel)
         calendarAdapter.submitList(viewModel.daysInMonthArray())
         val layoutManger = GridLayoutManager(requireActivity().application, 7)
         binding.rvCalendar.layoutManager = layoutManger

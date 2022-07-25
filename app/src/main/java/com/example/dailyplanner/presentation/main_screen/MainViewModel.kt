@@ -1,10 +1,7 @@
 package com.example.dailyplanner.presentation.main_screen
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import androidx.room.InvalidationTracker
 import com.example.dailyplanner.data.repository_impl.TaskRepositoryImpl
 import com.example.dailyplanner.domain.model.TaskItem
@@ -17,17 +14,15 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.YearMonth
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 
-class MainViewModel(
-    application: Application,
-) : AndroidViewModel(application) {
-
-    private val repository = TaskRepositoryImpl(application)
-    private val changeTaskItemUseCase = ChangeTaskItemUseCase(repository)
-    private val getTaskListUseCase = GetTaskListUseCase(repository)
-    private val deleteTaskItemUseCase = DeleteTaskItemUseCase(repository)
+class MainViewModel @Inject constructor(
+    private val changeTaskItemUseCase: ChangeTaskItemUseCase,
+    private val getTaskListUseCase: GetTaskListUseCase,
+    private val deleteTaskItemUseCase: DeleteTaskItemUseCase,
+) : ViewModel() {
 
     private val _selectedDate = MutableLiveData<LocalDate>()
     val selectedDate: LiveData<LocalDate>
@@ -49,10 +44,12 @@ class MainViewModel(
 
     fun plusMonth() {
         _selectedDate.value = _selectedDate.value?.plusMonths(1)
+        updateList()
     }
 
     fun minusMonth() {
         _selectedDate.value = _selectedDate.value?.minusMonths(1)
+        updateList()
     }
 
     fun changeTaskItem(taskItem: TaskItem) {

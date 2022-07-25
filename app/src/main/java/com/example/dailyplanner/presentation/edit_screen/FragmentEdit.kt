@@ -1,6 +1,7 @@
 package com.example.dailyplanner.presentation.edit_screen
 
 import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.LayoutInflater
@@ -10,8 +11,12 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.dailyplanner.databinding.FragmentEditTaskBinding
+import com.example.dailyplanner.di.DailyMainApp
 import com.example.dailyplanner.domain.model.TaskItem
+import com.example.dailyplanner.presentation.main_screen.MainViewModel
+import com.example.dailyplanner.presentation.viewmodel_factory.ViewModelFactory
 import java.util.*
+import javax.inject.Inject
 
 class FragmentEdit : Fragment() {
 
@@ -40,13 +45,25 @@ class FragmentEdit : Fragment() {
     private val calendarTimeFrom = Calendar.getInstance()
     private val calendarTimeTo = Calendar.getInstance()
 
-    private val viewModel by lazy {
-        ViewModelProvider(this)[EditViewModel::class.java]
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private lateinit var viewModel: EditViewModel
+
+    private val component by lazy {
+        (requireActivity().application as DailyMainApp).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        viewModel = ViewModelProvider(this, viewModelFactory)[EditViewModel::class.java]
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         parseArgs()
         super.onViewCreated(view, savedInstanceState)
+        component.inject(this)
         launchRightMode()
         observeVM()
         setOnFromTimeSetterClickListener()
