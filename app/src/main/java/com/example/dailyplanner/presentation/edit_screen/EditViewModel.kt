@@ -3,23 +3,20 @@ package com.example.dailyplanner.presentation.edit_screen
 import android.app.Application
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.dailyplanner.data.repository_impl.TaskRepositoryImpl
 import com.example.dailyplanner.domain.model.TaskItem
 import com.example.dailyplanner.domain.usecases.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import javax.inject.Inject
 
-class EditViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = TaskRepositoryImpl(application)
-    private val addTaskItemUseCase = AddTaskItemUseCase(repository)
-    private val changeTaskItemUseCase = ChangeTaskItemUseCase(repository)
-    private val getTaskItemUseCase = GetTaskItemUseCase(repository)
+class EditViewModel @Inject constructor (
+    private val addTaskItemUseCase: AddTaskItemUseCase,
+    private val changeTaskItemUseCase: ChangeTaskItemUseCase,
+    private val getTaskItemUseCase: GetTaskItemUseCase,
+) : ViewModel() {
 
     private val _errorTime = MutableLiveData<Any>()
     val errorTime: LiveData<Any>
