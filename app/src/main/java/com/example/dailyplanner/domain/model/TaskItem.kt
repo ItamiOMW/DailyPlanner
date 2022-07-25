@@ -4,7 +4,7 @@ import java.time.LocalDate
 
 data class TaskItem(
     val id: Int = UNKNOWN_ID,
-    val date: LocalDate,
+    val date: String,
     val name: String,
     val timeFrom: String,
     val timeTo: String,
@@ -14,5 +14,6 @@ data class TaskItem(
 
     companion object {
         const val UNKNOWN_ID = 0
+        const val ADD_NEW_ELEMENT = "Add new element"
     }
 }

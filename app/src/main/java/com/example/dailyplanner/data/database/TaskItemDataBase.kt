@@ -4,8 +4,9 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 
-@Database(entities = [TaskItemDbModel::class], exportSchema = false, version = 1)
+@Database(entities = [TaskItemDbModel::class], exportSchema = false, version = 3)
 abstract class TaskItemDataBase : RoomDatabase() {
 
     abstract fun taskItemDao(): TaskItemDao
@@ -28,7 +29,8 @@ abstract class TaskItemDataBase : RoomDatabase() {
                     application,
                     TaskItemDataBase::class.java,
                     DB_NAME
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 db = instance
                 return instance
             }

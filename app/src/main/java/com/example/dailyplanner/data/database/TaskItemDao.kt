@@ -18,6 +18,6 @@ interface TaskItemDao {
     @Query("SELECT * FROM task_items WHERE id=:taskItemId")
     suspend fun getTaskItem(taskItemId: Int): TaskItemDbModel
 
-    @Query("SELECT * FROM task_items")
-    fun getTaskList(): LiveData<List<TaskItemDbModel>>
+    @Query("SELECT * FROM task_items WHERE date=:date")
+    suspend fun getTaskList(date: String): List<TaskItemDbModel>
 }

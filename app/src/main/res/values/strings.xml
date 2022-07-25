@@ -19,4 +19,5 @@
     <string name="from">НАЧАЛО:</string>
     <string name="to">КОНЕЦ:</string>
     <string name="hint_enter_time">Установите время</string>
+    <string name="dash">-</string>
 </resources>
