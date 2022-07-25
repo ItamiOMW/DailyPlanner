@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".presentation.edit_screen.FragmentEdit">
+
+    <TextView
+        android:id="@+id/current_date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/et_task_name"
@@ -14,6 +28,7 @@
         android:hint="@string/enter_task_name"
         android:inputType="textCapWords"
         android:padding="10dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/tv_set_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,9 +38,9 @@
         android:id="@+id/tv_set_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/blue_gray"
         android:padding="10dp"
         android:text="@string/hint_enter_time"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/ll_time"
@@ -51,6 +66,7 @@
             android:background="@color/blue_gray"
             android:text="@string/from"
             android:textAlignment="textEnd"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
 
@@ -59,9 +75,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:hint="@string/set_time"
             android:padding="5dp"
-            android:text="@string/set_time"
             android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
@@ -71,6 +90,7 @@
             android:background="@color/blue_gray"
             android:text="@string/to"
             android:textAlignment="textEnd"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView
@@ -78,9 +98,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:hint="@string/set_time"
             android:padding="5dp"
-            android:text="@string/set_time"
             android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -116,6 +138,7 @@
         android:hint="@string/enter_task_desc"
         android:padding="10dp"
         android:textAlignment="viewStart"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@id/button_save"
         app:layout_constraintTop_toBottomOf="@id/ll_time" />
 

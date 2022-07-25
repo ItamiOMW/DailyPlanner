@@ -12,7 +12,7 @@ interface TaskRepository {
 
     suspend fun changeTask(taskItem: TaskItem)
 
-    suspend fun getTaskItem(taskItem: TaskItem): TaskItem
+    suspend fun getTaskItem(id: Int): TaskItem
 
-    fun getTaskItemList(date: LocalDate): LiveData<List<TaskItem>>
+    suspend fun getTaskItemList(date: String): List<TaskItem>?
 }
