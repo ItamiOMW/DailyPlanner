@@ -1,15 +1,15 @@
 package com.example.dailyplanner.presentation.edit_screen
 
-import android.app.Application
 import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.*
-import com.example.dailyplanner.data.repository_impl.TaskRepositoryImpl
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.dailyplanner.domain.model.TaskItem
-import com.example.dailyplanner.domain.usecases.*
-import kotlinx.coroutines.Dispatchers
+import com.example.dailyplanner.domain.usecases.AddTaskItemUseCase
+import com.example.dailyplanner.domain.usecases.ChangeTaskItemUseCase
+import com.example.dailyplanner.domain.usecases.GetTaskItemUseCase
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 import javax.inject.Inject
 
 class EditViewModel @Inject constructor (
@@ -62,7 +62,6 @@ class EditViewModel @Inject constructor (
                     )
                 )
                 finishWork()
-                Log.d("TEST_BUG", "added")
             }
         }
     }
@@ -91,7 +90,6 @@ class EditViewModel @Inject constructor (
                         )
                     changeTaskItemUseCase.invoke(taskItem)
                     finishWork()
-                    Log.d("TEST_BUG", "edited")
                 }
             }
         }
@@ -99,13 +97,11 @@ class EditViewModel @Inject constructor (
 
     private fun finishWork() {
         _shouldWindowBeClosed.postValue(Any())
-        Log.d("TEST_BUG", "finishWork")
     }
 
     fun resetErrors() {
         _errorTime.value = null
         _errorText.value = null
-        Log.d("TEST_BUG", "resetError")
     }
 
     private fun parseName(name: String?): String {
@@ -121,7 +117,6 @@ class EditViewModel @Inject constructor (
             _errorTime.value = Any()
             return false
         }
-        Log.d("TEST_BUG", "checkTime true")
         return true
     }
 
@@ -130,7 +125,6 @@ class EditViewModel @Inject constructor (
             _errorText.value = Any()
             return false
         }
-        Log.d("TEST_BUG", "checkText true")
         return true
     }
 
